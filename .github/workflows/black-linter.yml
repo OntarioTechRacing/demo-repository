@@ -21,5 +21,13 @@ jobs:
         pip install black
 
     - name: Check Black formatting
+      id: black
       run: |
         black --check --line-length 80 .
+      continue-on-error: true
+
+    - name: Annotate formatting issues
+      if: failure()
+      run: |
+        echo "##[error] Some files are not properly formatted. Please run 'black --line-length 80 .' to format your code."
+        git diff --name-only | xargs -I {} echo "::error file={}::File needs formatting with Black."
