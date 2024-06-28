@@ -1,6 +1,6 @@
 name: Black Formatter
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   black:
@@ -8,10 +8,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
@@ -22,18 +22,5 @@ jobs:
 
       - name: Check Black formatting
         run: |
-          black --check --line-length 80 . > black_output.log || echo "black_failed=true" >> $GITHUB_ENV
-        shell: bash
-
-      - name: Annotate code
-        if: env.black_failed == 'true'
-        run: |
-          grep -Po 'would reformat \K.*' black_output.log | while read file; do
-            echo "::error file=$file,line=1,col=1::Improper formatting, please reformat."
-          done
-        shell: bash
-
-      - name: Fail workflow
-        if: env.black_failed == 'true'
-        run: exit 1
+          black --check --line-length 80 .
         shell: bash
