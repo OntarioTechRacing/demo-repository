@@ -26,6 +26,7 @@ jobs:
       - name: Annotate Black format check failures
         if: ${{ failure() }}
         run: |
-          echo "::error file=filename,line=1,col=1::Formatting check failed on the following files:"
-          black --diff --line-length 80 . 2>&1 | grep -E "would reformat" | sed -E "s/would reformat //"
+          echo "::group::Files that require formatting:"
+          black --diff --line-length 80 . 2>&1 | grep -Po "would reformat \K.*"
+          echo "::endgroup::"
         shell: bash
