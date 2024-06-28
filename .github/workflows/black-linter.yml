@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with:
           python-version: "3.12"
 
@@ -25,12 +25,36 @@ jobs:
 
       - name: Check Python code formatting
         run: black --check --line-length 80 .
-        continue-on-error: true
-        id: black_check
+        id: black_format
 
-      - name: Output formatting issues
+      - name: Annotate formatting issues
         if: failure()
-        run: |
-          echo "Formatting check failed. Please run "black --line-length 80 .' locally to fix formatting issues."
-          echo "The following files require formatting:"
-          echo "${{ steps.black_check.outputs.stdout }}"
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const output = `${{ steps.black_format.outputs.stdout }}\n${{ steps.black_format.outputs.stderr }}`;
+            const regex = /^(.+):\d+:\d+: (.+)$/gm;
+            let match;
+            while (match = regex.exec(output)) {
+              const path = match[1];
+              const message = match[2];
+              github.rest.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'Formatting Error',
+                head_sha: context.sha,
+                status: 'completed',
+                conclusion: 'action_required',
+                output: {
+                  title: 'Code Formatting Errors',
+                  summary: 'The following files do not conform to formatting standards:',
+                  annotations: [{
+                    path: path,
+                    start_line: 1,
+                    end_line: 1,
+                    annotation_level: 'failure',
+                    message: message
+                  }]
+                }
+              });
+            }
