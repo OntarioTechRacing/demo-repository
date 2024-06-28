@@ -2,19 +2,14 @@
 """
 
 
-
-
 def test():
 
-  test = [1, 2, 3,4,5]
+    test = [1, 2, 3, 4, 5]
 
-  
-  for val in test:
-    print(test + 1)
+    for val in test:
+        print(test + 1)
 
-  
-  pass 
+    pass
 
 
-
-print( "WOWO hello world")
+print("WOWO hello world")
