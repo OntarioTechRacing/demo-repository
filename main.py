@@ -1,6 +1,6 @@
 """Test script for Black formatter.
 """
-
+  
 
 
 
