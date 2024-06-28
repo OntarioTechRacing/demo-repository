@@ -23,10 +23,10 @@ jobs:
       - name: Check Black formatting
         run: black --check --line-length 80 .
 
-      - name: Annotate Black format check failures
+      - name: Annotate formatting failures
         if: ${{ failure() }}
         run: |
-          echo "::group::Files that require formatting:"
-          black --diff --line-length 80 . 2>&1 | grep -Po "would reformat \K.*"
+          echo "::group::Formatting differences:"
+          black --diff --line-length 80 .
           echo "::endgroup::"
         shell: bash
