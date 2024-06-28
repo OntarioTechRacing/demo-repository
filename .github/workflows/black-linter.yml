@@ -21,17 +21,13 @@ jobs:
           pip install black
 
       - name: Check Black formatting
-        run: black --check --line-length 80 .
+        run: |
+          black --check --line-length 80 . 2>&1 | tee output.log
+        continue-on-error: true
 
-      - name: Annotate formatting failures
+      - name: Annotate code
         if: ${{ failure() }}
         run: |
-          # Generate diffs and format them as error messages
-          diffs=$(black --diff --line-length 80 .)
-          echo "$diffs" | while read line; do
-            if [[ "$line" =~ would\ reformat\ (.*) ]]; then
-              filename=${BASH_REMATCH[1]}
-              echo "::error file=$filename::Formatting issues found, see diff for details."
-            fi
+          grep -Po 'would reformat \K.*' output.log | while read file; do
+            echo "::error file=$file,line=1,col=1::Improper formatting, please reformat."
           done
-        shell: bash
