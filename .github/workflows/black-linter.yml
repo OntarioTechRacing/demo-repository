@@ -22,12 +22,16 @@ jobs:
 
       - name: Check Black formatting
         run: |
-          black --check --line-length 80 . 2>&1 | tee output.log
-        continue-on-error: true
+          black --check --line-length 80 . > output.log || echo "::set-output name=black_failed::true"
+        id: black_check
 
       - name: Annotate code
-        if: ${{ failure() }}
+        if: steps.black_check.outputs.black_failed == 'true'
         run: |
           grep -Po 'would reformat \K.*' output.log | while read file; do
             echo "::error file=$file,line=1,col=1::Improper formatting, please reformat."
           done
+
+      - name: Fail workflow
+        if: steps.black_check.outputs.black_failed == 'true'
+        run: exit 1
