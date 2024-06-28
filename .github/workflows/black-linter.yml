@@ -1,6 +1,6 @@
 name: Black Formatter
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   black:
@@ -21,12 +21,10 @@ jobs:
           pip install black
 
       - name: Check Black formatting
-        run: |
-          black --check --line-length 80 . || echo "BLACK_FORMATTING_FAILED=1" >> $GITHUB_ENV
-        continue-on-error: true
+        run: black --check --line-length 80 .
 
-      - name: Create annotation if formatting fails
-        if: ${{ env.BLACK_FORMATTING_FAILED == '1' }}
+      - name: Annotate Black format check failures
+        if: ${{ failure() }}
         run: |
           echo "::error file=filename,line=1,col=1::Formatting check failed on the following files:"
           black --diff --line-length 80 . 2>&1 | grep -E "would reformat" | sed -E "s/would reformat //"
