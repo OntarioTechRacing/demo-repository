@@ -25,7 +25,7 @@ jobs:
           black --check --line-length 80 . || echo "Black formatting check failed." >> $GITHUB_ENV
         continue-on-error: true
 
-      - name: Create annotation if formatting fails
+      - name: Fail annotations
         if: ${{ env.Black formatting check failed }}
         run: |
           echo "::error file=filename,line=1,col=1::Formatting check failed on the following files:"
