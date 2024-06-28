@@ -13,12 +13,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install black
+
       - name: Check Black formatting
         run: |
-          black --check --line-length 80 .
+          black --check --line-length 80 . || echo "Black formatting check failed." >> $GITHUB_ENV
+        continue-on-error: true
+
+      - name: Create annotation if formatting fails
+        if: ${{ env.Black formatting check failed }}
+        run: |
+          echo "::error file=filename,line=1,col=1::Formatting check failed on the following files:"
+          black --diff --line-length 80 . 2>&1 | grep -E "would reformat" | sed -E "s/would reformat //"
+        shell: bash
