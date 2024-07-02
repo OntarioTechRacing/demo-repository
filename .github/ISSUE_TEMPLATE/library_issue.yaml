@@ -1,8 +1,8 @@
 name: Component Library Issue
 about: File an issue to report errors, request new components, and more.
 title: "[Library]: "
-projects: []
-assignees: []
+projects: [ ]
+assignees: ""
 
 body:
   - type: markdown
@@ -14,7 +14,7 @@ body:
   - type: labels
     id: issue_type
     attributes:
-      label: Library issue type
+      label: "Library issue type"
       description: "Select the applicable issue type(s)."
       options:
         - component-request
@@ -23,8 +23,8 @@ body:
   - type: labels
     id: library_type_labels
     attributes:
-      label: Impacted library types
-      description: Select all types of library files impacted.
+      label: "Impacted library types"
+      description: "Select all types of library files impacted."
       options:
         - symbol
         - footprint
@@ -33,7 +33,7 @@ body:
   - type: input
     id: component
     attributes:
-      label: Component
+      label: "Component"
       description: "Please use this format: 'manufactuer manufactuer_part_number'."
       placeholder: "NXP TJA1051T-3"
     validations:
@@ -42,8 +42,8 @@ body:
   - type: textarea
     id: body
     attributes:
-      label: Issue body
-      description: Please add any relevant information, such as links to manufacturer documentation.
+      label: "Issue body"
+      description: "Please add any relevant information, such as links to manufacturer documentation."
       placeholder: |
         _Example:_
         Pins 3 and 5 on footprint `TJA1051T_3` are incorrectly swapped.
@@ -55,8 +55,8 @@ body:
   - type: dropdown
     id: nightly
     attributes:
-      label: Has this component been flagged by any other open issues or pull requests?
-      description: Please review any open issues and pull requests to avoid duplicates.
+      label: "Has this component been flagged by any other open issues or pull requests?"
+      description: "Please review any open issues and pull requests to avoid duplicates."
       multiple: false
       options:
         - "Yes"
@@ -67,8 +67,8 @@ body:
   - type: dropdown
     id: impact_production
     attributes:
-      label: Does this component impact any active production releases?
-      description: This information will assist in evaluating the fallout of actively released production designs.
+      label: "Does this component impact any active production releases?"
+      description: "This information will assist in evaluating the fallout of actively released production designs."
       multiple: false
       options:
         - "Yes"
