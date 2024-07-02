@@ -45,9 +45,8 @@ body:
     attributes:
       label: Issue body
       description: Please add any relevant information, such as links to manufacturer documentation.
-      render: markdown
       placeholder: |
-        Pins 3 and 5 on footprint `TJA1051T_3` are incorrectly swapped.
+        Pins 3 and 5 on footprint TJA1051T_3 are incorrectly swapped.
         See datasheet at https://www.nxp.com/docs/en/data-sheet/TJA1051.pdf.
         ...
     validations:
