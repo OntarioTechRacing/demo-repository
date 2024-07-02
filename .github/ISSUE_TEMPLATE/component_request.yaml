@@ -37,7 +37,7 @@ body:
       description: Please review any open issues to avoid duplicates.
       multiple: false
       options:
-        - Yes
-        - No
+        - "Yes"
+        - "No"
     validations:
       required: true
