@@ -38,7 +38,7 @@ body:
       required: true
 
   - type: textarea
-    id: body
+    id: issue_body
     attributes:
       label: "Issue body"
       description: "Please add any relevant information, such as links to manufacturer documentation."
