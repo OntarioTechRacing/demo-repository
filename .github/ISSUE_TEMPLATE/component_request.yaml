@@ -9,6 +9,13 @@ body:
         > Thank you for submitting this issue!
         > 
         > Please follow guidelines and only submit one issue or pull request per single component.
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue or pull request for this?
+      description: Please search to see if an issue or pull request already exists for this component request.
+      options:
+        - label: I have searched the existing issues and pull requests
+          required: true
   - type: input
     id: component
     attributes:
@@ -28,16 +35,5 @@ body:
         Requesting new component `TJA1051T_3`.
         Official datasheet found at [NXP TJA1051.pdf](https://www.nxp.com/docs/en/data-sheet/TJA1051.pdf).
         ...
-    validations:
-      required: true
-  - type: dropdown
-    id: nightly
-    attributes:
-      label: Has this component been requested by any other open issues?
-      description: Please review any open issues to avoid duplicates.
-      multiple: false
-      options:
-        - "Yes"
-        - "No"
     validations:
       required: true
