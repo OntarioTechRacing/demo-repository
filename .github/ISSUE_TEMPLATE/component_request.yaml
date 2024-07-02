@@ -8,9 +8,11 @@ body:
       value: |
         ## Thank you for submitting this issue!
         
-        *Don't forget to add a title above!*
+        _Don't forget to add a title above!_
         
         Please follow guidelines and only submit one issue or pull request per single component.
+        
+        ---
   - type: checkboxes
     attributes:
       label: Is there an existing issue or pull request for this?
