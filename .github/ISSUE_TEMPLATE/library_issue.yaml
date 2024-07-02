@@ -1,8 +1,6 @@
 name: Component Library Issue
 about: File an issue to report errors, request new components, and more.
 title: "[Library]: "
-projects: [ ]
-assignees: ""
 
 body:
   - type: markdown
