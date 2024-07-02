@@ -1,14 +1,12 @@
 name: Component Library Issue
 description: File an issue to report errors, request new components, and more.
 title: "[Library]: "
-
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for filling in this report!
         Please follow guidelines and only submit one issue or pull request per single component.
-
   - type: labels
     id: issue_type
     attributes:
@@ -17,7 +15,6 @@ body:
       options:
         - component-request
         - component-error
-
   - type: labels
     id: library_type_labels
     attributes:
@@ -27,7 +24,6 @@ body:
         - symbol
         - footprint
         - model
-
   - type: input
     id: component
     attributes:
@@ -36,7 +32,6 @@ body:
       placeholder: "NXP TJA1051T-3"
     validations:
       required: true
-
   - type: textarea
     id: issue_body
     attributes:
@@ -49,7 +44,6 @@ body:
         ...
     validations:
       required: true
-
   - type: dropdown
     id: nightly
     attributes:
@@ -61,7 +55,6 @@ body:
         - "No"
     validations:
       required: true
-
   - type: dropdown
     id: impact_production
     attributes:
