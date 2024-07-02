@@ -14,7 +14,7 @@ body:
   - type: labels
     id: issue_type
     attributes:
-      label: Issue Type
+      label: Library issue type
       description: "Select the applicable issue type(s)."
       options:
         - component-request
@@ -23,7 +23,7 @@ body:
   - type: labels
     id: library_type_labels
     attributes:
-      label: Impacted library types:
+      label: Impacted library types
       description: Select all types of library files impacted.
       options:
         - symbol
@@ -33,7 +33,7 @@ body:
   - type: input
     id: component
     attributes:
-      label: Component information
+      label: Component
       description: "Please use this format: 'manufactuer manufactuer_part_number'."
       placeholder: "NXP TJA1051T-3"
     validations:
