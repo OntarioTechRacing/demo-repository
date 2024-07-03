@@ -58,9 +58,9 @@ body:
       description: This may improve response time by allowing multiple issues to be closed at once.
       multiple: false
       options:
-        - "Yes"
-        - "No"
-        - "Unsure, I'd need to check"
+        - Yes, referenced issues and/or pull requests are noted in the issue body
+        - No, there are no other references currently open
+        - Unsure, I need to check
       default: 2
     validations:
       required: true
@@ -71,9 +71,9 @@ body:
       description: This information will assist in evaluating the fallout of actively released production designs.
       multiple: false
       options:
-        - "Yes"
-        - "No"
-        - "Unsure, I'd need to check"
+        - Yes, the impacted active releases and respective repos are noted in the issue body
+        - No, there are no visible impacts
+        - Unsure, I need to check
       default: 2
     validations:
       required: true
