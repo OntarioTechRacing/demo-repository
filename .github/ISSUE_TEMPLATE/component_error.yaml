@@ -61,7 +61,7 @@ body:
         - "Yes"
         - "No"
         - "Unsure, I'd need to check"
-      default: "Unsure, I'd need to check"
+      default: 2
     validations:
       required: true
   - type: dropdown
@@ -74,6 +74,6 @@ body:
         - "Yes"
         - "No"
         - "Unsure, I'd need to check"
-      default: "Unsure, I'd need to check"
+      default: 2
     validations:
       required: true
