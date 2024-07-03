@@ -23,9 +23,9 @@ body:
   - type: input
     id: component
     attributes:
-      label: Component
+      label: New component being requested
       description: Use the format 'manufactuer manufactuer_part_number'.
-      placeholder: NXP TJA1051T-3
+      placeholder: DJ DJCOMP123-4
     validations:
       required: true
   - type: textarea
@@ -34,8 +34,21 @@ body:
       label: Issue body
       description: Please add any relevant information, such as links to manufacturer documentation.
       placeholder: |
-        Requesting new component TJA1051T_3.
-        Official datasheet found at https://www.nxp.com/docs/en/data-sheet/TJA1051.pdf.
+        Requesting new component: DJCOMP123-4.
+        Datasheet found at https://www.google.com.
         ...
+    validations:
+      required: true
+  - type: dropdown
+    id: review
+    attributes:
+      label: Has this component been approved in a component viability review?
+      description: Components must be reviewed for compliance, cost, and logistics before commitment.
+      multiple: false
+      options:
+        - Approved
+        - Pending decision
+        - Denied
+        - Review not requested (yet)
     validations:
       required: true
