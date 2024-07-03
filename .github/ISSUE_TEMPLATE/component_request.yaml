@@ -28,6 +28,16 @@ body:
       placeholder: DJ DJCOMP123-4
     validations:
       required: true
+  - type: dropdown
+    id: library_types
+    attributes:
+      label: Impacted library types
+      description: Select all types of library files impacted.
+      multiple: true
+      options:
+        - Symbol
+        - Footprint
+        - Model (3D)
   - type: textarea
     id: issue_body
     attributes:
@@ -42,13 +52,13 @@ body:
   - type: dropdown
     id: review
     attributes:
-      label: Has this component been approved in a component viability review?
+      label: Has this component completed a viability review?
       description: Components must be reviewed for compliance, cost, and logistics before commitment.
       multiple: false
       options:
-        - Approved
-        - Pending decision
-        - Denied
-        - Review not requested (yet)
+        - No, review not requested (yet)
+        - No, pending decision
+        - Yes, it was denied
+        - Yes, it was approved as noted in the issue body
     validations:
       required: true
