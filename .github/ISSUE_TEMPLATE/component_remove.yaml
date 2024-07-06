@@ -1,7 +1,7 @@
-name: 🛠️ Component Error
-description: File an issue to report component errors requiring repairs
-title: "[Error] <title>"
-labels: "component error"
+name: 🧨 Component Remove
+description: File an issue to request removal of a component due to deprecation or obsolescence
+title: "[Remove] <title>"
+labels: "component remove"
 body:
   - type: markdown
     attributes:
@@ -24,7 +24,7 @@ body:
   - type: input
     id: component
     attributes:
-      label: Component requiring repair
+      label: Component requiring removal
       description: Use the format 'manufactuer manufactuer_part_number'.
       placeholder: DJ DJCOMP123-4
     validations:
@@ -47,8 +47,8 @@ body:
       label: Issue body
       description: Please add any relevant information, such as links to manufacturer documentation.
       placeholder: |
-        Pins 5 and 6 on footprint DJ DJCOMP123-4 are incorrectly swapped.
-        Datasheet found at https://www.google.com.
+        DJCOMP123-4 has been moved to an obsolete status due to the end of life support.
+        See end of life and discontinuation of support declaration at https://google.com.
         ...
     validations:
       required: true
@@ -62,7 +62,6 @@ body:
         - Unsure, I need to check
         - Yes, referenced issues and/or pull requests are noted in the issue body
         - No, there are no other references currently open
-      default: 2
     validations:
       required: true
   - type: dropdown

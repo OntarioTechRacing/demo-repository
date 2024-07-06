@@ -14,6 +14,7 @@ body:
         
         ---
   - type: checkboxes
+    id: check_duplicates
     attributes:
       label: Is there an existing issue or pull request for this?
       description: Please search to see if an issue or pull request already exists for this component request.
