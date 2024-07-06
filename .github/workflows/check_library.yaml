@@ -10,7 +10,7 @@ name: Check Library
 on: [ push, pull_request ]
 
 jobs:
-  black:
+  library:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,4 +28,7 @@ jobs:
           pip install -r .github/workflows/requirements.txt
 
       - name: Run script
+        env:
+          MOUSER_API_KEY: ${{ secrets.MOUSER_API_KEY }}
+          MOUSER_API_VERSION: ${{ secrets.MOUSER_API_VERSION }}
         run: python .github/workflows/check_symbols.py
