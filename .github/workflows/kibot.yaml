@@ -1,0 +1,81 @@
+################################################################################
+# kibot.yaml
+# Base commit hash: TODO TODO TODO
+#
+# KiBot custom preflight checks and output file automations for GitHub actions.
+################################################################################
+
+name: Checks
+
+on:
+  push:
+    paths:
+      - "*.kicad_sch"
+      - "*.kicad_pcb"
+      - "*.kibot.yaml"
+      - ".github/workflows/kibot.yml"
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "*.kicad_sch"
+      - "*.kicad_pcb"
+      - "*.kibot.yaml"
+      - ".github/workflows/kibot.yml"
+    branches:
+      - main
+
+jobs:
+  erc:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ERC
+        run: |
+          make erc
+
+      - name: Retrieve results
+        uses: actions/upload-artifact@v4
+        with:
+          name: erc_outputs
+          path: Generated
+
+  drc:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+    needs: erc
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DRC
+        run: |
+          make drc
+
+      - name: Retrieve results
+        uses: actions/upload-artifact@v4
+        with:
+          name: drc_outputs
+          path: Generated
+
+  var_default:
+    name: Default variant
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+    needs: [ ERC, DRC ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate default variant
+        run: |
+          make var_default
+
+      - name: Retrieve results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Default_Output
+          path: Generated
