@@ -28,10 +28,19 @@ on:
 jobs:
   erc:
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
 
     steps:
       - uses: actions/checkout@v4
+      - uses: INTI-CMNB/KiBot@v2
+        with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - prefix to output defined in config
+          dir: output
+          # optional - schematic file
+          schema: "schematic.sch"
+          # optional - PCB design file
+          board: "pcb.kicad_pcb"
 
       - name: Run ERC
         run: |
@@ -45,11 +54,21 @@ jobs:
 
   drc:
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+
     needs: erc
 
     steps:
       - uses: actions/checkout@v4
+      - uses: INTI-CMNB/KiBot@v2
+        with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - prefix to output defined in config
+          dir: output
+          # optional - schematic file
+          schema: "schematic.sch"
+          # optional - PCB design file
+          board: "pcb.kicad_pcb"
 
       - name: Run DRC
         run: |
@@ -63,12 +82,23 @@ jobs:
 
   var_default:
     name: Default variant
+
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
-    needs: [ ERC, DRC ]
+
+    needs: [ erc, drc ]
 
     steps:
       - uses: actions/checkout@v4
+      - uses: INTI-CMNB/KiBot@v2
+        with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - prefix to output defined in config
+          dir: output
+          # optional - schematic file
+          schema: "schematic.sch"
+          # optional - PCB design file
+          board: "pcb.kicad_pcb"
 
       - name: Generate default variant
         run: |
