@@ -38,7 +38,7 @@ jobs:
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: schematic.sch
+          schema: schematic.kicad_sch
           # optional - PCB design file
           board: pcb.kicad_pcb
 
@@ -66,7 +66,7 @@ jobs:
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: schematic.sch
+          schema: schematic.kicad_sch
           # optional - PCB design file
           board: pcb.kicad_pcb
 
@@ -96,7 +96,7 @@ jobs:
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: schematic.sch
+          schema: schematic.kicad_sch
           # optional - PCB design file
           board: pcb.kicad_pcb
 
