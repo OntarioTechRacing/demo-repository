@@ -31,20 +31,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: INTI-CMNB/KiBot@v2
-        with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - prefix to output defined in config
-          dir: output
-          # optional - schematic file
-          schema: schematic.kicad_sch
-          # optional - PCB design file
-          board: pcb.kicad_pcb
+#      - uses: INTI-CMNB/KiBot@v2_k8
+#        with:
+#          # Required - kibot config file
+#          config: config.kibot.yaml
+#          # optional - prefix to output defined in config
+#          dir: output
+#          # optional - schematic file
+#          schema: schematic.kicad_sch
+#          # optional - PCB design file
+#          board: pcb.kicad_pcb
 
       - name: Run ERC
-        run: |
-          make erc
+        uses: INTI-CMNB/KiBot@v2_k8
+        with:
+          dir: Generated
+          skip: run_drc
+          targets: __NONE__
 
       - name: Retrieve results
         uses: actions/upload-artifact@v4
@@ -59,20 +62,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: INTI-CMNB/KiBot@v2
-        with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - prefix to output defined in config
-          dir: output
-          # optional - schematic file
-          schema: schematic.kicad_sch
-          # optional - PCB design file
-          board: pcb.kicad_pcb
+#      - uses: INTI-CMNB/KiBot@v2_k8
+#        with:
+#          # Required - kibot config file
+#          config: config.kibot.yaml
+#          # optional - prefix to output defined in config
+#          dir: output
+#          # optional - schematic file
+#          schema: schematic.kicad_sch
+#          # optional - PCB design file
+#          board: pcb.kicad_pcb
 
       - name: Run DRC
-        run: |
-          make drc
+        uses: INTI-CMNB/KiBot@v2_k8
+        with:
+          dir: Generated
+          skip: run_erc
+          targets: __NONE__
 
       - name: Retrieve results
         uses: actions/upload-artifact@v4
@@ -89,23 +95,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: INTI-CMNB/KiBot@v2
+
+      - uses: INTI-CMNB/KiBot@v2_k8
         with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - prefix to output defined in config
-          dir: output
-          # optional - schematic file
-          schema: schematic.kicad_sch
-          # optional - PCB design file
-          board: pcb.kicad_pcb
+          dir: default
+          variant: default
+          skip: run_erc,run_drc
 
-      - name: Generate default variant
-        run: |
-          make var_default
-
-      - name: Retrieve results
+      - name: upload results
         uses: actions/upload-artifact@v4
         with:
-          name: Default_Output
-          path: Generated
+          name: default_variant
+          path: default
