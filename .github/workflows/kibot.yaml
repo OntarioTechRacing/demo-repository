@@ -34,7 +34,7 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: "config.kibot.yaml"
+          config: "../../config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
@@ -62,7 +62,7 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: "config.kibot.yaml"
+          config: "../../config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
@@ -92,7 +92,7 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: "config.kibot.yaml"
+          config: "../../config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
