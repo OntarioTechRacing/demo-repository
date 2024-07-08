@@ -13,7 +13,7 @@ on:
       - "*.kicad_sch"
       - "*.kicad_pcb"
       - "*.kibot.yaml"
-      - ".github/workflows/kibot.yml"
+      - ".github/workflows/kibot.yaml"
     branches:
       - main
   pull_request:
@@ -21,7 +21,7 @@ on:
       - "*.kicad_sch"
       - "*.kicad_pcb"
       - "*.kibot.yaml"
-      - ".github/workflows/kibot.yml"
+      - ".github/workflows/kibot.yaml"
     branches:
       - main
 
@@ -34,13 +34,13 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: config.kibot.yaml
+          config: "config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: "schematic.sch"
+          schema: "../../schematic.sch"
           # optional - PCB design file
-          board: "pcb.kicad_pcb"
+          board: "../../pcb.kicad_pcb"
 
       - name: Run ERC
         run: |
@@ -62,13 +62,13 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: config.kibot.yaml
+          config: "config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: "schematic.sch"
+          schema: "../../schematic.sch"
           # optional - PCB design file
-          board: "pcb.kicad_pcb"
+          board: "../../pcb.kicad_pcb"
 
       - name: Run DRC
         run: |
@@ -92,13 +92,13 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2
         with:
           # Required - kibot config file
-          config: config.kibot.yaml
+          config: "config.kibot.yaml"
           # optional - prefix to output defined in config
           dir: output
           # optional - schematic file
-          schema: "schematic.sch"
+          schema: "../../schematic.sch"
           # optional - PCB design file
-          board: "pcb.kicad_pcb"
+          board: "../../pcb.kicad_pcb"
 
       - name: Generate default variant
         run: |
