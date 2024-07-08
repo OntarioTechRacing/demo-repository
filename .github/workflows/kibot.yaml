@@ -31,20 +31,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-#      - uses: INTI-CMNB/KiBot@v2_k8
-#        with:
-#          # Required - kibot config file
-#          config: config.kibot.yaml
-#          # optional - prefix to output defined in config
-#          dir: output
-#          # optional - schematic file
-#          schema: schematic.kicad_sch
-#          # optional - PCB design file
-#          board: pcb.kicad_pcb
 
       - name: Run ERC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - schematic file
+          schema: schematic.kicad_sch
+          # optional - PCB design file
+          board: pcb.kicad_pcb
+
           dir: Generated
           skip: run_drc
           targets: __NONE__
@@ -62,20 +59,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-#      - uses: INTI-CMNB/KiBot@v2_k8
-#        with:
-#          # Required - kibot config file
-#          config: config.kibot.yaml
-#          # optional - prefix to output defined in config
-#          dir: output
-#          # optional - schematic file
-#          schema: schematic.kicad_sch
-#          # optional - PCB design file
-#          board: pcb.kicad_pcb
 
       - name: Run DRC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - schematic file
+          schema: schematic.kicad_sch
+          # optional - PCB design file
+          board: pcb.kicad_pcb
+
           dir: Generated
           skip: run_erc
           targets: __NONE__
@@ -98,6 +92,13 @@ jobs:
 
       - uses: INTI-CMNB/KiBot@v2_k8
         with:
+          # Required - kibot config file
+          config: config.kibot.yaml
+          # optional - schematic file
+          schema: schematic.kicad_sch
+          # optional - PCB design file
+          board: pcb.kicad_pcb
+
           dir: default
           variant: default
           skip: run_erc,run_drc
