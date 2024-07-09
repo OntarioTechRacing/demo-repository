@@ -55,7 +55,7 @@ jobs:
   drc:
     runs-on: ubuntu-latest
 
-    needs: erc
+  # needs: erc
 
     steps:
       - uses: actions/checkout@v4
@@ -85,7 +85,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: [ erc, drc ]
+  # needs: [ erc, drc ]
 
     steps:
       - uses: actions/checkout@v4
