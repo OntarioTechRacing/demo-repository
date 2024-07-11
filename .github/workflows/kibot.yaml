@@ -29,12 +29,14 @@ on:
 
 jobs:
   kibot_erc:
+    name: KiBot ERC
+
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: KiBot ERC
+      - name: Run ERC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
           config: config.kibot.yaml  # Required - kibot config file.
@@ -52,6 +54,8 @@ jobs:
           path: Generated
 
   kibot_drc:
+    name: KiBot DRC
+
     runs-on: ubuntu-latest
 
     # needs: kibot_erc
@@ -59,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: KiBot DRC
+      - name: Run DRC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
           config: config.kibot.yaml  # Required - kibot config file.
