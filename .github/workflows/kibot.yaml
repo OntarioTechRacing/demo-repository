@@ -35,15 +35,12 @@ jobs:
       - name: Run ERC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - schematic file
-          # schema: "${{ github.repository }}.kicad_sch"
-          # optional - PCB design file
-          # board: "${{ github.repository }}.kicad_pcb"
+          config: config.kibot.yaml  # Required - kibot config file.
+          # schema: kicad_project_name.kicad_sch  # Optional - schematic file.
+          # board: kicad_project_name.kicad_pcb  # Optional - PCB design file.
 
           dir: Generated
-          skip: run_drc
+          skip: drc
           targets: __NONE__
 
       - name: Retrieve results
@@ -63,15 +60,12 @@ jobs:
       - name: Run DRC
         uses: INTI-CMNB/KiBot@v2_k8
         with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - schematic file
-          # schema: "${{ github.repository }}.kicad_sch"
-          # optional - PCB design file
-          # board: "${{ github.repository }}.kicad_pcb"
+          config: config.kibot.yaml  # Required - kibot config file.
+          # schema: kicad_project_name.kicad_sch  # Optional - schematic file.
+          # board: kicad_project_name.kicad_pcb  # Optional - PCB design file.
 
           dir: Generated
-          skip: run_erc
+          skip: erc
           targets: __NONE__
 
       - name: Retrieve results
@@ -92,16 +86,13 @@ jobs:
 
       - uses: INTI-CMNB/KiBot@v2_k8
         with:
-          # Required - kibot config file
-          config: config.kibot.yaml
-          # optional - schematic file
-          # schema: "${{ github.repository }}.kicad_sch"
-          # optional - PCB design file
-          # board: "${{ github.repository }}.kicad_pcb"
+          config: config.kibot.yaml  # Required - kibot config file.
+          # schema: kicad_project_name.kicad_sch  # Optional - schematic file.
+          # board: kicad_project_name.kicad_pcb  # Optional - PCB design file.
 
           dir: default
           variant: default
-          skip: run_erc,run_drc
+          skip: erc,drc
 
       - name: upload results
         uses: actions/upload-artifact@v4
