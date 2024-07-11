@@ -3,6 +3,8 @@
 # Base commit hash: TODO TODO TODO
 #
 # KiBot custom preflight checks and output file automations for GitHub actions.
+#
+# Built for KiCad 8 with KiBot.
 ################################################################################
 
 name: Checks
@@ -94,7 +96,7 @@ jobs:
           variant: default
           skip: erc,drc
 
-      - name: upload results
+      - name: Upload result artifacts
         uses: actions/upload-artifact@v4
         with:
           name: default_variant
