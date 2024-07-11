@@ -66,9 +66,9 @@ jobs:
           # Required - kibot config file
           config: config.kibot.yaml
           # optional - schematic file
-          schema: "${{ github.repository }}.kicad_sch"
+          # schema: "${{ github.repository }}.kicad_sch"
           # optional - PCB design file
-          board: "${{ github.repository }}.kicad_pcb"
+          # board: "${{ github.repository }}.kicad_pcb"
 
           dir: Generated
           skip: run_erc
@@ -95,9 +95,9 @@ jobs:
           # Required - kibot config file
           config: config.kibot.yaml
           # optional - schematic file
-          schema: "${{ github.repository }}.kicad_sch"
+          # schema: "${{ github.repository }}.kicad_sch"
           # optional - PCB design file
-          board: "${{ github.repository }}.kicad_pcb"
+          # board: "${{ github.repository }}.kicad_pcb"
 
           dir: default
           variant: default
