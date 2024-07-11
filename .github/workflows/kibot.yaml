@@ -38,9 +38,9 @@ jobs:
           # Required - kibot config file
           config: config.kibot.yaml
           # optional - schematic file
-          schema: schematic.kicad_sch
+          schema: "${{ github.repository }}.kicad_sch"
           # optional - PCB design file
-          board: pcb.kicad_pcb
+          board: "${{ github.repository }}.kicad_pcb"
 
           dir: Generated
           skip: run_drc
@@ -55,7 +55,7 @@ jobs:
   drc:
     runs-on: ubuntu-latest
 
-  # needs: erc
+    # needs: erc
 
     steps:
       - uses: actions/checkout@v4
@@ -66,9 +66,9 @@ jobs:
           # Required - kibot config file
           config: config.kibot.yaml
           # optional - schematic file
-          schema: schematic.kicad_sch
+          schema: "${{ github.repository }}.kicad_sch"
           # optional - PCB design file
-          board: pcb.kicad_pcb
+          board: "${{ github.repository }}.kicad_pcb"
 
           dir: Generated
           skip: run_erc
@@ -85,7 +85,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-  # needs: [ erc, drc ]
+    # needs: [ erc, drc ]
 
     steps:
       - uses: actions/checkout@v4
@@ -95,9 +95,9 @@ jobs:
           # Required - kibot config file
           config: config.kibot.yaml
           # optional - schematic file
-          schema: schematic.kicad_sch
+          schema: "${{ github.repository }}.kicad_sch"
           # optional - PCB design file
-          board: pcb.kicad_pcb
+          board: "${{ github.repository }}.kicad_pcb"
 
           dir: default
           variant: default
