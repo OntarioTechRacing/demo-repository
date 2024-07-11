@@ -89,11 +89,11 @@ outputs:
       format: HTML
       html:
         datasheet_as_link: MFP
-        title: 'BoM'
+        title: "BoM"
         highlight_empty: false
 
   - name: ibom
-    comment: "Prototype assembly guide"
+    comment: "Assembly BoM guide"
     type: ibom
     dir: BoM
     options:
@@ -107,8 +107,7 @@ outputs:
     type: pdf_sch_print
     dir: Schematic
     options:
-      # Append the variant to the title
-      title: "+ (%V variant)"
+      title: "+ (%V variant)"  # Append the variant to the title.
   ##############################################################################
 
   ##############################################################################
@@ -118,17 +117,16 @@ outputs:
     type: gerber
     dir: Gerbers
     layers:
-      - copper
+      - copper  # General copper layers.
       - Edge.Cuts
-      - F.SilkS
-      - B.SilkS
+      - F.Silkscreen
+      - B.Silkscreen
       - F.Mask
       - B.Mask
       - F.Paste
-      - F.Adhes
-      - F.Fab
-      - F.CrtYd
-      - Dwgs.User
+      - B.Paste
+      - F.Courtyard
+      - B.Courtyard
 
   - name: drill
     comment: Drill files
@@ -153,31 +151,28 @@ outputs:
     options:
       force_edge_cuts: true
       keep_temporal_files: true
-      # Append the variant to the title
-      title: "+ (%V variant)"
-      # This is the worksheet we selected in the project, no need to specify it again
-      # sheet_reference_layout: pcb_print.kicad_wks
+      title: "+ (%V variant)"  # Append the variant to the title.
       scaling: 2.0
       pages:
-        - layers: [ F.Paste, F.Adhes, Dwgs.User, F.Fab ]
-          sheet: "Fabrication layers"
+        - layers: [ F.Paste, F.Fab ]
+          sheet: "Fabrication top layers"
+        - layers: [ B.Paste, B.Fab ]
+          sheet: "Fabrication bottom layers"
         - layers:
             - layer: F.Cu
             - layer: F.Mask
-              color: "#14332440"
-            - layer: F.SilkS
-            - layer: Dwgs.User
+              color: "#14332440"  # Yellow.
+            - layer: F.Silkscreen
           sheet: "Top layer"
-        - layers: [ GND.Cu, Dwgs.User ]
-          sheet: "GND plane"
-        - layers: [ Power.Cu, Dwgs.User ]
-          sheet: "Power plane"
+        - layers: [ In1.Cu ]
+          sheet: "Inner layer 1"
+        - layers: [ In2.Cu ]
+          sheet: "Inner layer 2"
         - layers:
             - layer: B.Cu
             - layer: B.Mask
-              color: "#14332440"
-            - layer: B.SilkS
-            - layer: Dwgs.User
+              color: "#14332440"  # Yellow.
+            - layer: B.Silkscreen
           sheet: "Bottom layer"
           mirror: true
   ##############################################################################
@@ -196,7 +191,7 @@ outputs:
   #  comment: "Top layer view with components"
   #  type: pcbdraw
   #  dir: PCB
-  #  output_id: '-filled'
+  #  output_id: "-filled"
   #  options:
   #    format: jpg
   #    dpi: 300
@@ -215,7 +210,7 @@ outputs:
   #  comment: "Bottom layer view with components"
   #  type: pcbdraw
   #  dir: PCB
-  #  output_id: '-filled'
+  #  output_id: "-filled"
   #  options:
   #    format: jpg
   #    dpi: 300
